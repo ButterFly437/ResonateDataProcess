@@ -48,19 +48,19 @@ out()
 
 # 图片
 # 抽取
-lab3_z1 = [[], [], []]
+lab3_z1 = [[], [], [], []]
 for i in data.LAB3['Z1']['data']:
     lab3_z1[0].append(i[0])
     lab3_z1[1].append(i[1])
     lab3_z1[2].append(round(i[3],3))
-out(len(lab3_z1[2]))
-out(len(lab3_z1[1]))
+    lab3_z1[3].append(round(math.pi * 2 / i[2], 3))
 
-lab3_z3 = [[], [], []]
+lab3_z3 = [[], [], [], []]
 for i in data.LAB3['Z3']['data']:
     lab3_z3[0].append(i[0])
     lab3_z3[1].append(i[1])
     lab3_z3[2].append(round(i[3],3))   
+    lab3_z3[3].append(round(math.pi * 2 / i[2], 3))
 OUTPUT_DIR = './outputs'
 # 检查文件夹是否存在
 if not os.path.isdir(OUTPUT_DIR):
@@ -69,7 +69,7 @@ draw.draw_smooth(os.path.join(OUTPUT_DIR, '受迫振动的幅频特性.png'), la
     x_other=lab3_z3[2], y_other=lab3_z3[1], line1_legend='阻尼1', line2_legend='阻尼3', grid=True, factor=0.03)
 draw.draw_smooth(os.path.join(OUTPUT_DIR, '受迫振动的幅频特性.svg'), lab3_z1[2], lab3_z1[1], 'ω/ω0', 'θ', '受迫振动的幅频特性',
     x_other=lab3_z3[2], y_other=lab3_z3[1], line1_legend='阻尼1', line2_legend='阻尼3', grid=True, factor=0.03)
-draw.draw_smooth(os.path.join(OUTPUT_DIR, '受迫振动的相频特性.png'), lab3_z1[2], lab3_z1[0], 'ω/ω0', 'θ', '受迫振动的相频特性',
-    x_other=lab3_z3[2], y_other=lab3_z3[0], line1_legend='阻尼1', line2_legend='阻尼3', grid=True, factor=0.03)
-draw.draw_smooth(os.path.join(OUTPUT_DIR, '受迫振动的相频特性.svg'), lab3_z1[2], lab3_z1[0], 'ω/ω0', 'θ', '受迫振动的相频特性',
-    x_other=lab3_z3[2], y_other=lab3_z3[0], line1_legend='阻尼1', line2_legend='阻尼3', grid=True, factor=0.03)
+draw.draw_smooth(os.path.join(OUTPUT_DIR, '受迫振动的相频特性.png'), lab3_z1[3], lab3_z1[0], 'ω', 'θ', '受迫振动的相频特性',
+    x_other=lab3_z3[3], y_other=lab3_z3[0], line1_legend='阻尼1', line2_legend='阻尼3', grid=True, factor=0.02)
+draw.draw_smooth(os.path.join(OUTPUT_DIR, '受迫振动的相频特性.svg'), lab3_z1[3], lab3_z1[0], 'ω', '', '受迫振动的相频特性',
+    x_other=lab3_z3[3], y_other=lab3_z3[0], line1_legend='阻尼1', line2_legend='阻尼3', grid=True, factor=0.02)
